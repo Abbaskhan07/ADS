@@ -14,6 +14,7 @@ public class Main {
         System.out.println(n % 10);
     }
 }
+
 //*Task - 2
 // public class Main {
 //
