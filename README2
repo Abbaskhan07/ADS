@@ -1,0 +1,53 @@
+# Assignment 2: Physical & Logical Data Structures (Banking System)
+
+Ibraimov Abbaskhan
+IT-2501 
+
+## 📝 Brief Summary of Work Process
+In this assignment, I developed a console-based Banking System to demonstrate the practical application of logical and physical data structures. 
+First, I created a core `BankAccount` class using Object-Oriented Programming principles. Then, I step-by-step implemented linear data structures: 
+* **LinkedList** for dynamic account storage.
+* **Stack (LIFO)** for transaction history and undo operations.
+* **Queue (FIFO)** for bill payments and processing admin requests.
+* **Array** for demonstrating fixed physical memory allocation.
+
+The main challenge was correctly integrating all these separate structures into a unified interactive `Main Menu` without logical conflicts. I solved this by making the data structures globally accessible across different menu methods and carefully managing the user input via Scanner.
+
+---
+
+### Part 1: Logical Data Structures
+
+#### Task 1: Bank Account Storage Using LinkedList
+*Implemented a dynamic list to store, display, and search user accounts.*
+
+
+#### Task 2: Deposit & Withdraw Operations
+*Added methods to modify the balance of existing accounts.*
+
+
+#### Task 3: Transaction History (Stack – LIFO)
+*Used a Stack to record actions and implemented an Undo (pop) feature.*
+
+
+#### Task 4: Bill Payment Queue (Queue – FIFO)
+*Created a Queue to add and process utility bills sequentially.*
+
+
+#### Task 5: Account Opening Queue (Admin Simulation)
+*Implemented a system where user requests wait in a Queue until an Admin processes (polls) them into the main LinkedList.*
+
+
+---
+
+### Part 2: Physical Data Structures
+
+#### Task 6: Static Array Storage
+*Created a fixed-size Array `BankAccount[3]` to demonstrate physical memory constraints.*
+
+
+---
+
+### Part 3: Mini Banking Menu Integration
+
+#### Final Unified Program
+*A fully functional interactive menu integrating the Bank, ATM, and Admin Area.*
