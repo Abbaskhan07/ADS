@@ -7,9 +7,9 @@ public class Main {
         Graph smallGraph = createSmallGraph();
         smallGraph.printGraph();
 
-        experiment.runTraversals(smallGraph);     // показывает порядок обхода
+        experiment.runTraversals(smallGraph);
 
-        experiment.runMultipleTests();            // только замеры времени
+        experiment.runMultipleTests();
     }
 
     private static Graph createSmallGraph() {

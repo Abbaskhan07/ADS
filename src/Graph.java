@@ -45,7 +45,7 @@ public class Graph {
         }
     }
 
-    // Перегруженные методы для удобства
+
     public void bfs(int start) {
         bfs(start, true);
     }

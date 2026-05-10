@@ -14,13 +14,13 @@ public class Experiment {
         for (int size : sizes) {
             Graph g = createGraph(size);
 
-            // Измеряем BFS
+
             long start = System.nanoTime();
             g.bfs(0, false);           // без печати
             long end = System.nanoTime();
             long bfsTime = end - start;
 
-            // Измеряем DFS
+
             start = System.nanoTime();
             g.dfs(0, false);           // без печати
             end = System.nanoTime();
@@ -34,18 +34,18 @@ public class Experiment {
     private Graph createGraph(int numVertices) {
         Graph g = new Graph();
 
-        // Добавляем вершины
+
         for (int i = 0; i < numVertices; i++) {
             g.addVertex(new Vertex(i));
         }
 
-        // Добавляем ребра (смешанный граф)
+
         for (int i = 0; i < numVertices; i++) {
             for (int j = 1; j <= 3; j++) {
                 int to = (i + j) % numVertices;
                 g.addEdge(i, to);
             }
-            // Добавляем несколько случайных ребер
+
             for (int k = 0; k < 2; k++) {
                 int randomTo = (int) (Math.random() * numVertices);
                 if (randomTo != i) {
