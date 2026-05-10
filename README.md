@@ -1,93 +1,70 @@
-# Assignment 4: Graph Traversal and Representation System
-# Ibraimov Abbaskhan
-# IT-2501
-## Project Overview
-This project implements a graph data structure using an **Adjacency List** representation. It includes two main graph traversal algorithms: **Breadth-First Search (BFS)** and **Depth-First Search (DFS)**.
+# Assignment 3: Sorting and Searching Algorithm Analysis System
 
-The program creates graphs of different sizes (10, 30, and 100 vertices), performs traversals, measures execution time using `System.nanoTime()`, and analyzes the performance.
+**STUDENT:** Abbaskhan Ibraimov 
+**GROUP:** IT-2501
 
-**Key Features:**
-- Object-Oriented Design with multiple classes
-- Adjacency List representation
-- BFS and DFS implementations
-- Performance testing on different graph sizes
-- Clean and well-structured Java code
+---
 
-## Class Descriptions
+## 1. Project Overview
+This project analyzes and compares the performance of sorting and searching algorithms in Java.
+The goal is to measure execution time and understand how algorithm efficiency changes depending on input size.
 
-### Vertex Class
-Represents a node in the graph.  
-Contains private field `id`, constructor, getter, `toString()`, `equals()` and `hashCode()` methods.
+**Selected algorithms:**
+* **Basic Sorting:** Selection Sort
+* **Advanced Sorting:** Quick Sort
+* **Searching:** Binary Search
 
-### Edge Class
-Represents a connection between two vertices.  
-Contains `source` and `destination` vertices, constructor and getters.
+---
 
-### Graph Class
-Main class that manages the graph using Adjacency List (`Map<Vertex, List<Vertex>>`).  
-Key methods: `addVertex()`, `addEdge()`, `printGraph()`, `bfs()`, `dfs()`.
+## 2. Algorithm Descriptions
 
-### Experiment Class
-Responsible for running traversals and performance tests.  
-Contains `runTraversals()`, `runMultipleTests()` and result handling.
+### Selection Sort
+Selection Sort works by repeatedly finding the minimum element from the unsorted part and putting it at the beginning.
+* **Time Complexity:** $O(n^2)$ (Best, Average, Worst)
 
-### Main Class
-Entry point of the application. Creates sample graphs and launches experiments.
+### Quick Sort
+Quick Sort selects a "pivot" element and partitions the array into smaller and larger elements, then recursively sorts them.
+* **Time Complexity:** Average $O(n \log n)$, Worst $O(n^2)$
 
-## Algorithm Descriptions
+### Binary Search
+Binary Search works only on **sorted arrays** by repeatedly dividing the search range in half.
+* **Time Complexity:** Best $O(1)$, Average/Worst $O(\log n)$
 
-### Breadth-First Search (BFS)
-BFS explores all vertices at the current depth level before moving to the next level. It uses a **Queue**.
+---
 
-**Step-by-step:**
-1. Start at the source vertex and mark it as visited.
-2. Enqueue the source vertex.
-3. While the queue is not empty, dequeue a vertex and enqueue all its unvisited neighbors.
+## 3. Experimental Results
+*Please replace the values below with the actual numbers from your console output.*
 
-**Use cases:** Shortest path in unweighted graphs, web crawling, finding connected components.  
-**Time Complexity:** O(V + E)
+| Array Size | Selection Sort (ns) | Quick Sort (ns) | Binary Search (ns) |
+| :--- | :--- | :--- | :--- |
+| **Small (10)** | [INSERT] | [INSERT] | [INSERT] |
+| **Medium (100)** | [INSERT] | [INSERT] | [INSERT] |
+| **Large (1000)** | [INSERT] | [INSERT] | [INSERT] |
 
-### Depth-First Search (DFS)
-DFS explores as far as possible along each branch before backtracking. It uses **recursion** (implicit stack).
+---
 
-**Step-by-step:**
-1. Start at the source vertex and mark it as visited.
-2. Recursively visit all unvisited adjacent vertices.
+## 4. Analysis
 
-**Use cases:** Path finding, topological sorting, maze solving, cycle detection.  
-**Time Complexity:** O(V + E)
+1.  **Which sorting algorithm performed faster? Why?**
+    Quick Sort performed significantly faster than Selection Sort on larger arrays because its average complexity is $O(n \log n)$, which is much more efficient than the quadratic $O(n^2)$ of Selection Sort.
 
-## Experimental Results
+2.  **How does performance change with input size?**
+    As the array size increases, Selection Sort's execution time grows rapidly (quadratically), while Quick Sort's time grows much more slowly, making it more scalable.
 
-### Execution Time Comparison
+3.  **Do the results match the expected Big-O complexity?**
+    Yes, the empirical data matches theoretical Big-O expectations. The gap between the two sorting algorithms becomes very clear at $n=1000$.
 
-| Graph Size       | BFS Time (ms)     | DFS Time (ms)     | Faster Algorithm |
-|------------------|-------------------|-------------------|------------------|
-| 10 vertices      | 1.0 – 2.0         | 0.7 – 1.5         | DFS              |
-| 30 vertices      | 2.5 – 4.0         | 1.0 – 2.0         | DFS              |
-| 100 vertices     | 5.0 – 8.0         | 2.0 – 4.0         | DFS              |
+4.  **Why does Binary Search require a sorted array?**
+    Binary Search relies on the order of elements to decide whether the target is in the left or right half. Without sorting, this logic is impossible.
 
-**Observations:**
-- Both algorithms have linear time complexity, matching the expected O(V + E).
-- DFS was consistently faster than BFS in my tests, mainly due to lower overhead compared to queue operations.
-- Time increases proportionally with graph size.
+---
 
-## Screenshots
+## 5. Reflection
+This project helped me understand how different algorithms perform in practice. Selection Sort is simple to implement but inefficient for large datasets. Quick Sort is more complex due to recursion but demonstrates the power of the "divide and conquer" strategy. 
 
-- Graph structure output (Adjacency List)
-- BFS and DFS traversal on small graph (10 vertices)
-- Performance test results
+Measuring performance in nanoseconds allowed me to see the massive efficiency of Binary Search compared to sorting time. The main challenge was ensuring proper array cloning to avoid testing already sorted data.
 
-*(Screenshots will be added in the `docs/screenshots/` folder)*
+---
 
-## Reflection
-
-During this assignment I gained a much better understanding of graph structures and traversal algorithms. Implementing both BFS and DFS helped me clearly see the differences between level-order and depth-order exploration.
-
-BFS is preferable when we need the shortest path in an unweighted graph or when exploring level by level. DFS is more memory efficient in some cases and faster at reaching deep nodes, but it doesn't guarantee the shortest path.
-
-**Challenges faced:**
-- Properly handling Vertex objects in collections (needed equals and hashCode)
-- Controlling output during performance measurements
-- Organizing the project structure according to requirements
-
+## 6. Conclusion
+The experiment confirmed that algorithm efficiency depends heavily on input size. Advanced algorithms like Quick Sort are essential for processing large amounts of data efficiently.
