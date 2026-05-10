@@ -1,39 +1,58 @@
 public class Experiment {
-    private Sorter sorter = new Sorter();
-    private Searcher searcher = new Searcher();
 
-    public long measureSortTime(int[] arr, String type) {
-        long start = System.nanoTime();
-        if (type.equals("basic")) sorter.basicSort(arr);
-        else sorter.advancedSort(arr);
-        return System.nanoTime() - start;
+    public void runTraversals(Graph g) {
+        System.out.println("\n=== Running Traversals on Small Graph ===");
+        g.bfs(0);
+        g.dfs(0);
     }
 
-    public long measureSearchTime(int[] arr, int target) {
-        long start = System.nanoTime();
-        searcher.search(arr, target);
-        return System.nanoTime() - start;
-    }
+    public void runMultipleTests() {
+        System.out.println("\n=== Performance Tests ===\n");
 
-    public void runAllExperiments() {
-        int[] sizes = {10, 100, 1000};
+        int[] sizes = {10, 30, 100};
+
         for (int size : sizes) {
-            System.out.println("\n--- Size: " + size + " ---");
-            int[] arr = sorter.generateRandomArray(size);
+            Graph g = createGraph(size);
 
-            // Тест Basic Sort
-            int[] copy1 = arr.clone();
-            long t1 = measureSortTime(copy1, "basic");
-            System.out.println("Selection Sort: " + t1 + " ns");
+            // Измеряем BFS
+            long start = System.nanoTime();
+            g.bfs(0, false);           // без печати
+            long end = System.nanoTime();
+            long bfsTime = end - start;
 
-            // Тест Advanced Sort
-            int[] copy2 = arr.clone();
-            long t2 = measureSortTime(copy2, "advanced");
-            System.out.println("Quick Sort: " + t2 + " ns");
+            // Измеряем DFS
+            start = System.nanoTime();
+            g.dfs(0, false);           // без печати
+            end = System.nanoTime();
+            long dfsTime = end - start;
 
-            // Тест Search (на отсортированном)
-            long t3 = measureSearchTime(copy2, copy2[size/2]);
-            System.out.println("Binary Search: " + t3 + " ns");
+            System.out.printf("Graph with %d vertices → BFS: %.2f ms | DFS: %.2f ms%n",
+                    size, bfsTime / 1_000_000.0, dfsTime / 1_000_000.0);
         }
+    }
+
+    private Graph createGraph(int numVertices) {
+        Graph g = new Graph();
+
+        // Добавляем вершины
+        for (int i = 0; i < numVertices; i++) {
+            g.addVertex(new Vertex(i));
+        }
+
+        // Добавляем ребра (смешанный граф)
+        for (int i = 0; i < numVertices; i++) {
+            for (int j = 1; j <= 3; j++) {
+                int to = (i + j) % numVertices;
+                g.addEdge(i, to);
+            }
+            // Добавляем несколько случайных ребер
+            for (int k = 0; k < 2; k++) {
+                int randomTo = (int) (Math.random() * numVertices);
+                if (randomTo != i) {
+                    g.addEdge(i, randomTo);
+                }
+            }
+        }
+        return g;
     }
 }

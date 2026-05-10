@@ -1,11 +1,27 @@
 public class Main {
+
     public static void main(String[] args) {
         Experiment experiment = new Experiment();
 
-        System.out.println("=== STARTING ALGORITHM ANALYSIS SYSTEM ===");
+        System.out.println("=== Small Graph (10 vertices) ===");
+        Graph smallGraph = createSmallGraph();
+        smallGraph.printGraph();
 
-        experiment.runAllExperiments();
+        experiment.runTraversals(smallGraph);     // показывает порядок обхода
 
-        System.out.println("\n=== EXPERIMENTS COMPLETED ===");
+        experiment.runMultipleTests();            // только замеры времени
+    }
+
+    private static Graph createSmallGraph() {
+        Graph g = new Graph();
+        for (int i = 0; i < 10; i++) {
+            g.addVertex(new Vertex(i));
+        }
+        for (int i = 0; i < 10; i++) {
+            g.addEdge(i, (i + 1) % 10);
+            g.addEdge(i, (i + 2) % 10);
+            g.addEdge(i, (i + 3) % 10);
+        }
+        return g;
     }
 }
