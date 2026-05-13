@@ -76,6 +76,8 @@ DFS explores as far as possible along each branch before backtracking. It uses *
 - Graph structure output (Adjacency List)
 - BFS and DFS traversal on small graph (10 vertices)
 - Performance test results
+- <img width="706" height="737" alt="Снимок экрана 2026-05-10 160137" src="https://github.com/user-attachments/assets/84a02f1d-e5d0-4497-b245-03588d02e971" />
+
 
 *(Screenshots will be added in the `docs/screenshots/` folder)*
 
