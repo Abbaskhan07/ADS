@@ -1,9 +1,8 @@
 # ADS Project - Graph Algorithms & Bonus Task
 # Ibraimov Abbaskhan IT-2501
-
 This repository contains the implementation of a Graph data structure in Java, including standard traversal algorithms (BFS, DFS) and the completion of the Bonus Task (Dijkstra's Algorithm).
 
-## Bonus Task Implementation
+## Bonus Task Implementation (+5 points)
 According to the assignment requirements, the following updates were made to the existing project to support Dijkstra's Algorithm for finding the shortest path:
 
 ### 1. Edge Weights
