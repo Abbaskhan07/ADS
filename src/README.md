@@ -24,4 +24,7 @@ According to the assignment requirements, the following updates were made to the
 3. Add weighted edges using `addEdge(sourceId, targetId, weight)`.
 4. Call `graph.dijkstra(startId)` to see the console output.
 
-<img width="1919" height="1026" alt="Снимок экрана 2026-05-23 093912" src="https://github.com/user-attachments/assets/9ab8cf0a-b4ba-4818-be58-ea9a2a18e530" />
+<img width="883" height="699" alt="Снимок экрана 2026-05-23 095936" src="https://github.com/user-attachments/assets/d5b36056-130a-4139-9c77-b4ab38fea694" />
+<img width="1124" height="753" alt="Снимок экрана 2026-05-23 095912" src="https://github.com/user-attachments/assets/d853f2e1-d20f-4f88-b9f6-f0a2808caa4d" />
+<img width="1251" height="565" alt="Снимок экрана 2026-05-23 095857" src="https://github.com/user-attachments/assets/363ae1d0-0827-4572-b172-c15714943297" />
+
