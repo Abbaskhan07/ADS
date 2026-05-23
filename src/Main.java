@@ -1,27 +1,26 @@
 public class Main {
-
     public static void main(String[] args) {
-        Experiment experiment = new Experiment();
+        Graph graph = new Graph();
 
-        System.out.println("=== Small Graph (10 vertices) ===");
-        Graph smallGraph = createSmallGraph();
-        smallGraph.printGraph();
 
-        experiment.runTraversals(smallGraph);
+        Vertex v0 = new Vertex(0);
+        Vertex v1 = new Vertex(1);
+        Vertex v2 = new Vertex(2);
+        Vertex v3 = new Vertex(3);
 
-        experiment.runMultipleTests();
-    }
+        graph.addVertex(v0);
+        graph.addVertex(v1);
+        graph.addVertex(v2);
+        graph.addVertex(v3);
 
-    private static Graph createSmallGraph() {
-        Graph g = new Graph();
-        for (int i = 0; i < 10; i++) {
-            g.addVertex(new Vertex(i));
-        }
-        for (int i = 0; i < 10; i++) {
-            g.addEdge(i, (i + 1) % 10);
-            g.addEdge(i, (i + 2) % 10);
-            g.addEdge(i, (i + 3) % 10);
-        }
-        return g;
+        graph.addEdge(0, 1, 4);
+        graph.addEdge(0, 2, 1);
+        graph.addEdge(2, 1, 2);
+        graph.addEdge(1, 3, 1);
+        graph.addEdge(2, 3, 5);
+
+
+        System.out.println("бонусное задание:Спасибо большое за банус АПАЙ");
+        graph.dijkstra(0);
     }
 }

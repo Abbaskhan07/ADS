@@ -14,12 +14,10 @@ public class Experiment {
         for (int size : sizes) {
             Graph g = createGraph(size);
 
-
             long start = System.nanoTime();
             g.bfs(0, false);           // без печати
             long end = System.nanoTime();
             long bfsTime = end - start;
-
 
             start = System.nanoTime();
             g.dfs(0, false);           // без печати
@@ -34,7 +32,6 @@ public class Experiment {
     private Graph createGraph(int numVertices) {
         Graph g = new Graph();
 
-
         for (int i = 0; i < numVertices; i++) {
             g.addVertex(new Vertex(i));
         }
@@ -43,16 +40,19 @@ public class Experiment {
         for (int i = 0; i < numVertices; i++) {
             for (int j = 1; j <= 3; j++) {
                 int to = (i + j) % numVertices;
-                g.addEdge(i, to);
+                int randomWeight = (int) (Math.random() * 10) + 1;
+                g.addEdge(i, to, randomWeight);
             }
 
             for (int k = 0; k < 2; k++) {
                 int randomTo = (int) (Math.random() * numVertices);
                 if (randomTo != i) {
-                    g.addEdge(i, randomTo);
+                    int randomWeight2 = (int) (Math.random() * 10) + 1;
+                    g.addEdge(i, randomTo, randomWeight2);
                 }
             }
         }
+
         return g;
     }
 }

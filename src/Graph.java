@@ -1,7 +1,8 @@
 import java.util.*;
 
 public class Graph {
-    private Map<Vertex, List<Vertex>> adjacencyList;
+
+    private Map<Vertex, List<Edge>> adjacencyList;
     private List<Vertex> vertices;
 
     public Graph() {
@@ -16,12 +17,13 @@ public class Graph {
         }
     }
 
-    public void addEdge(int from, int to) {
+
+    public void addEdge(int from, int to, int weight) {
         Vertex vFrom = findVertex(from);
         Vertex vTo = findVertex(to);
 
         if (vFrom != null && vTo != null) {
-            adjacencyList.get(vFrom).add(vTo);
+            adjacencyList.get(vFrom).add(new Edge(vTo, weight));
         }
     }
 
@@ -38,13 +40,12 @@ public class Graph {
         System.out.println("Graph adjacency list:");
         for (Vertex v : vertices) {
             System.out.print(v.getId() + " -> ");
-            for (Vertex neighbor : adjacencyList.get(v)) {
-                System.out.print(neighbor.getId() + " ");
+            for (Edge edge : adjacencyList.get(v)) {
+                System.out.print(edge.getTarget().getId() + "(w:" + edge.getWeight() + ") ");
             }
             System.out.println();
         }
     }
-
 
     public void bfs(int start) {
         bfs(start, true);
@@ -70,7 +71,9 @@ public class Graph {
                 System.out.print(current.getId() + " ");
             }
 
-            for (Vertex neighbor : adjacencyList.get(current)) {
+
+            for (Edge edge : adjacencyList.get(current)) {
+                Vertex neighbor = edge.getTarget();
                 if (!visited.contains(neighbor)) {
                     visited.add(neighbor);
                     queue.add(neighbor);
@@ -102,10 +105,63 @@ public class Graph {
             System.out.print(vertex.getId() + " ");
         }
 
-        for (Vertex neighbor : adjacencyList.get(vertex)) {
+
+        for (Edge edge : adjacencyList.get(vertex)) {
+            Vertex neighbor = edge.getTarget();
             if (!visited.contains(neighbor)) {
                 dfsUtil(neighbor, visited, printOrder);
             }
+        }
+    }
+
+
+    public void dijkstra(int start) {
+        Vertex startVertex = findVertex(start);
+        if (startVertex == null) {
+            System.out.println("Vertex not found.");
+            return;
+        }
+
+        Map<Vertex, Integer> distances = new HashMap<>();
+        Set<Vertex> visited = new HashSet<>();
+
+
+        for (Vertex v : vertices) {
+            distances.put(v, Integer.MAX_VALUE);
+        }
+        distances.put(startVertex, 0);
+
+        for (int i = 0; i < vertices.size(); i++) {
+
+            Vertex current = null;
+            int minDistance = Integer.MAX_VALUE;
+
+            for (Vertex v : vertices) {
+                if (!visited.contains(v) && distances.get(v) < minDistance) {
+                    minDistance = distances.get(v);
+                    current = v;
+                }
+            }
+
+
+            if (current == null) break;
+            visited.add(current);
+
+            for (Edge edge : adjacencyList.get(current)) {
+                Vertex neighbor = edge.getTarget();
+                if (!visited.contains(neighbor)) {
+                    int newDist = distances.get(current) + edge.getWeight();
+                    if (newDist < distances.get(neighbor)) {
+                        distances.put(neighbor, newDist);
+                    }
+                }
+            }
+        }
+
+        System.out.println("Shortest distances from vertex " + start + ":");
+        for (Vertex v : vertices) {
+            int dist = distances.get(v);
+            System.out.println("To vertex " + v.getId() + " : " + (dist == Integer.MAX_VALUE ? "Unreachable/INF" : dist));
         }
     }
 }

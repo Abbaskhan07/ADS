@@ -1,92 +1,28 @@
-# Assignment 4: Graph Traversal and Representation System
+# ADS Project - Graph Algorithms & Bonus Task
 # Ibraimov Abbaskhan IT-2501
-## Project Overview
-This project implements a graph data structure using an **Adjacency List** representation. It includes two main graph traversal algorithms: **Breadth-First Search (BFS)** and **Depth-First Search (DFS)**.
 
-The program creates graphs of different sizes (10, 30, and 100 vertices), performs traversals, measures execution time using `System.nanoTime()`, and analyzes the performance.
+This repository contains the implementation of a Graph data structure in Java, including standard traversal algorithms (BFS, DFS) and the completion of the Bonus Task (Dijkstra's Algorithm).
 
-**Key Features:**
-- Object-Oriented Design with multiple classes
-- Adjacency List representation
-- BFS and DFS implementations
-- Performance testing on different graph sizes
-- Clean and well-structured Java code
+## Bonus Task Implementation
+According to the assignment requirements, the following updates were made to the existing project to support Dijkstra's Algorithm for finding the shortest path:
 
-## Class Descriptions
+### 1. Edge Weights
+- The `Edge` class was completely refactored to include a `weight` field.
+- It now stores the `target` Vertex and the `weight` of the connection.
 
-### Vertex Class
-Represents a node in the graph.  
-Contains private field `id`, constructor, getter, `toString()`, `equals()` and `hashCode()` methods.
+### 2. Graph Structure Update
+- The main graph structure in the `Graph` class was updated from an unweighted adjacency list (`Map<Vertex, List<Vertex>>`) to a weighted adjacency list (`Map<Vertex, List<Edge>>`).
+- Existing traversal algorithms (BFS and DFS) were modified to remain compatible with the new `Edge` structure.
 
-### Edge Class
-Represents a connection between two vertices.  
-Contains `source` and `destination` vertices, constructor and getters.
+### 3. Dijkstra's Algorithm (`void dijkstra(int start)`)
+- The algorithm calculates the shortest path from a starting vertex to all other reachable vertices.
+- **Implementation notes:** It strictly uses simple loops, arrays/maps for keeping track of distances, and a visited set. Priority Queues were deliberately avoided as per the assignment's suggestion.
+- The method prints out clear results, showing the minimum distance from the starting vertex to every other vertex in the graph, or "Unreachable/INF" if no path exists.
 
-### Graph Class
-Main class that manages the graph using Adjacency List (`Map<Vertex, List<Vertex>>`).  
-Key methods: `addVertex()`, `addEdge()`, `printGraph()`, `bfs()`, `dfs()`.
+### How to test:
+1. Create a `Graph` instance.
+2. Add vertices using `addVertex(new Vertex(id))`.
+3. Add weighted edges using `addEdge(sourceId, targetId, weight)`.
+4. Call `graph.dijkstra(startId)` to see the console output.
 
-### Experiment Class
-Responsible for running traversals and performance tests.  
-Contains `runTraversals()`, `runMultipleTests()` and result handling.
-
-### Main Class
-Entry point of the application. Creates sample graphs and launches experiments.
-
-## Algorithm Descriptions
-
-### Breadth-First Search (BFS)
-BFS explores all vertices at the current depth level before moving to the next level. It uses a **Queue**.
-
-**Step-by-step:**
-1. Start at the source vertex and mark it as visited.
-2. Enqueue the source vertex.
-3. While the queue is not empty, dequeue a vertex and enqueue all its unvisited neighbors.
-
-**Use cases:** Shortest path in unweighted graphs, web crawling, finding connected components.  
-**Time Complexity:** O(V + E)
-
-### Depth-First Search (DFS)
-DFS explores as far as possible along each branch before backtracking. It uses **recursion** (implicit stack).
-
-**Step-by-step:**
-1. Start at the source vertex and mark it as visited.
-2. Recursively visit all unvisited adjacent vertices.
-
-**Use cases:** Path finding, topological sorting, maze solving, cycle detection.  
-**Time Complexity:** O(V + E)
-
-## Experimental Results
-
-### Execution Time Comparison
-
-| Graph Size       | BFS Time (ms)     | DFS Time (ms)     | Faster Algorithm |
-|------------------|-------------------|-------------------|------------------|
-| 10 vertices      | 1.0 – 2.0         | 0.7 – 1.5         | DFS              |
-| 30 vertices      | 2.5 – 4.0         | 1.0 – 2.0         | DFS              |
-| 100 vertices     | 5.0 – 8.0         | 2.0 – 4.0         | DFS              |
-
-**Observations:**
-- Both algorithms have linear time complexity, matching the expected O(V + E).
-- DFS was consistently faster than BFS in my tests, mainly due to lower overhead compared to queue operations.
-- Time increases proportionally with graph size.
-
-## Screenshots
-
-- Graph structure output (Adjacency List)
-- BFS and DFS traversal on small graph (10 vertices)
-- Performance test results
-
-*(Screenshots will be added in the `docs/screenshots/` folder)*
-
-## Reflection
-
-During this assignment I gained a much better understanding of graph structures and traversal algorithms. Implementing both BFS and DFS helped me clearly see the differences between level-order and depth-order exploration.
-
-BFS is preferable when we need the shortest path in an unweighted graph or when exploring level by level. DFS is more memory efficient in some cases and faster at reaching deep nodes, but it doesn't guarantee the shortest path.
-
-**Challenges faced:**
-- Properly handling Vertex objects in collections (needed equals and hashCode)
-- Controlling output during performance measurements
-- Organizing the project structure according to requirements
-
+![Снимок экрана 2026-05-23 093912.png](../../../Pictures/Screenshots/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202026-05-23%20093912.png)
