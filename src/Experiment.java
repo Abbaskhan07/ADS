@@ -6,7 +6,6 @@ public class Experiment {
         g.dfs(0);
     }
 
-
     public void runMultipleTests() {
         System.out.println("\n=== Performance Tests ===\n");
 

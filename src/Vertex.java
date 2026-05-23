@@ -20,7 +20,6 @@ public class Vertex {
         if (o == null || getClass() != o.getClass()) return false;
         Vertex vertex = (Vertex) o;
         return id == vertex.id;
-
     }
 
     @Override

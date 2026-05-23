@@ -13,7 +13,6 @@ public class Main {
         graph.addVertex(v2);
         graph.addVertex(v3);
 
-
         graph.addEdge(0, 1, 4);
         graph.addEdge(0, 2, 1);
         graph.addEdge(2, 1, 2);
